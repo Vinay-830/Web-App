@@ -1,0 +1,47 @@
+
+package org.learn;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+/**
+ * Servlet implementation class Portfolio
+ */
+public class Portfolio extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+    /**
+     * Default constructor. 
+     */
+    public Portfolio() {
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		// response.getWriter().append("Served at: ").append(request.getContextPath());
+		// response.getWriter().println("<h1>Hello World</h1>");
+		String parm = request.getParameter("page");
+		if(parm == null) {
+			getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+		}
+		else if(parm.equals("about")) {
+			getServletContext().getRequestDispatcher("/about.jsp").forward(request, response);
+		}
+		else if(parm.equals("contact")) {
+			getServletContext().getRequestDispatcher("/contact.jsp").forward(request, response);
+		}
+		else {
+			getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+		}
+	}
+}
+
+
